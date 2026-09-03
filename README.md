@@ -12,11 +12,16 @@ travel app for Directors of Operations, coaches, trainers, and equipment manager
 
 ## What's implemented
 
-The Home / Explore experience: an Airbnb-style search module (destination, dates,
-travel party, starting point, sport), a Destination Hub with party-size-ranked hotel,
-restaurant, catering, and essentials results, a real (not cosmetic) Team Fit Score and
-ranking engine, a "Can Fit Our Team" filter, "Feed the Team Fast," Need Something Now,
-and inline athletics knowledge (department visit history, staff notes, network signal).
+**Web:** an Airbnb-style search module (destination, dates, travel party, starting point,
+sport), a Destination Hub with party-size-ranked hotel, restaurant, catering, and
+essentials results, a real (not cosmetic) Team Fit Score and ranking engine, a "Can Fit
+Our Team" filter, "Feed the Team Fast," Need Something Now, inline athletics knowledge
+(department visit history, staff notes, network signal), a Trip Board, a day-grouped
+Itinerary, and a full Place Details page.
+
+**iOS:** a native SwiftUI port of the same Home/Explore flow and Trip Board/Itinerary,
+sharing the identical demo dataset and ranking/Team Fit Score logic — see
+[`ios/README.md`](ios/README.md) for how to open it in Xcode.
 
 Demo data seeds Fresno State Women's Volleyball traveling to Ohio State, Sep 12–14, with
 a 28-person travel party — matching the product brief's worked example.
@@ -42,6 +47,8 @@ src/
 ├── data/           # Seeded demo dataset
 ├── state/          # Zustand active-trip-context store
 └── lib/            # Utilities
+
+ios/                # SwiftUI app — see ios/README.md
 ```
 
 ## Known follow-ups
@@ -53,3 +60,5 @@ src/
   `docs/ARCHITECTURE.md` §13 for the intended provider.
 - Auth, Supabase wiring, and RLS policies are specified in the architecture doc and schema
   but not yet connected — this pass is UI + ranking logic over an in-memory demo dataset.
+- The iOS app was written without access to Xcode/a Swift toolchain (this session runs on
+  Linux), so it has been carefully reviewed but not compiled — see `ios/README.md`.
