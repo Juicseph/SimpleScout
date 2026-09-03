@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { Heart, MapPin, Navigation, Star } from "lucide-react";
 import { PhotoTile } from "@/components/ui/PhotoTile";
 import { TeamFitBadge } from "@/components/knowledge/TeamFitBadge";
@@ -25,16 +26,21 @@ export function PlaceCard({ ranked, highlighted }: { ranked: RankedPlace; highli
   const { place, fit, distanceMi, driveMinutes, knowledge } = ranked;
 
   return (
-    <div
+    <Link
+      href={`/place/${place.id}`}
       className={cn(
-        "group overflow-hidden rounded-xl2 border bg-white shadow-card transition-shadow hover:shadow-pop",
+        "group block overflow-hidden rounded-xl2 border bg-white shadow-card transition-shadow hover:shadow-pop",
         highlighted ? "border-brand-500 ring-2 ring-brand-100" : "border-sand-200"
       )}
     >
       <div className="relative">
         <PhotoTile theme={place.external.photoTheme} className="h-40 w-full" />
         <button
-          onClick={() => setSaved((s) => !s)}
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            setSaved((s) => !s);
+          }}
           aria-label="Save place"
           className="absolute right-3 top-3 flex h-8 w-8 items-center justify-center rounded-full bg-white/90 shadow-card backdrop-blur transition-transform hover:scale-105"
         >
@@ -83,6 +89,6 @@ export function PlaceCard({ ranked, highlighted }: { ranked: RankedPlace; highli
         <p className="text-[12.5px] text-ink-500">{fit.headline}</p>
         <KnowledgeStrip knowledge={knowledge} />
       </div>
-    </div>
+    </Link>
   );
 }

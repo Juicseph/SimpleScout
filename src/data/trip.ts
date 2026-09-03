@@ -15,3 +15,9 @@ export const DEMO_TRIP: Trip = {
   currentHotelPlaceId: "place_marriott_columbus",
   status: "planning",
 };
+
+export const TRIPS: Trip[] = [DEMO_TRIP];
+
+export function getTripById(id: string): Trip | undefined {
+  return TRIPS.find((t) => t.id === id);
+}

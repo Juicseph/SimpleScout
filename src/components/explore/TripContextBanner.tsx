@@ -1,10 +1,12 @@
 "use client";
 
-import { CalendarDays, MapPin, Users, Zap } from "lucide-react";
+import Link from "next/link";
+import { CalendarDays, ClipboardList, MapPin, Users, Zap } from "lucide-react";
 import { UNIVERSITIES } from "@/data/universities";
 import { useTripStore } from "@/state/tripStore";
 import { totalTravelers } from "@/models";
 import { formatDateRange } from "@/lib/utils";
+import { DEMO_TRIP } from "@/data/trip";
 
 const SPORT_LABELS: Record<string, string> = {
   volleyball: "Volleyball",
@@ -62,13 +64,22 @@ export function TripContextBanner({ onFeedTeamFast }: { onFeedTeamFast: () => vo
         <p className="text-[12.5px] text-ink-500">
           SimpleScout is prioritizing every result below for a party of <strong>{partySize}</strong>.
         </p>
-        <button
-          onClick={onFeedTeamFast}
-          className="flex items-center gap-1.5 rounded-full bg-ink-950 px-4 py-2 text-[13px] font-semibold text-white hover:bg-ink-900"
-        >
-          <Zap className="h-3.5 w-3.5" />
-          Feed {partySize} People Fast
-        </button>
+        <div className="flex flex-wrap gap-2">
+          <Link
+            href={`/trips/${DEMO_TRIP.id}`}
+            className="flex items-center gap-1.5 rounded-full border border-sand-300 bg-white px-4 py-2 text-[13px] font-semibold text-ink-950 hover:border-ink-700"
+          >
+            <ClipboardList className="h-3.5 w-3.5" />
+            View Trip Board
+          </Link>
+          <button
+            onClick={onFeedTeamFast}
+            className="flex items-center gap-1.5 rounded-full bg-ink-950 px-4 py-2 text-[13px] font-semibold text-white hover:bg-ink-900"
+          >
+            <Zap className="h-3.5 w-3.5" />
+            Feed {partySize} People Fast
+          </button>
+        </div>
       </div>
     </section>
   );

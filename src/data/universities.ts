@@ -71,6 +71,10 @@ export function findUniversityBySlug(slug: string): University | undefined {
   return UNIVERSITIES.find((u) => u.slug === slug);
 }
 
+export function getVenueById(id: string): Venue | undefined {
+  return VENUES.find((v) => v.id === id);
+}
+
 export function searchUniversities(query: string): University[] {
   const q = query.trim().toLowerCase();
   if (!q) return UNIVERSITIES;
